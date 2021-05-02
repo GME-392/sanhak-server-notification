@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <title>Notification Console</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!--위는 더미 데이터, 페이지 시작시 db에서 값을 읽어와서 저장할 js함수필요-->
+    </head>
+    <body>
+        <div>
+            <div class="contest-box">
+                <div class="sub-title">대회 정보</div>
+                <div class="contest">
+                    <table id="contest-table">
+                        <thead class="contest-table-head">
+                            <tr>
+                                <th>일자</th>
+                                <th>내용</th>
+                                <th>링크</th>
+                                <th>삭제</th>
+                            </tr>
+                        </thead>
+                        <tbody id="contest-table-Body">
+                        </tbody>
+                        <footer></footer>
+                    </table>
+                </div>
+                <form id="contest-form">
+                    <div id="contest-form-box">
+                        <div class="contest-form-field-item">일자</div>
+                        <div class="contest-form-field-item">내용</div>
+                        <div class="contest-form-field-item">링크</div>
+                    </div>
+                    <div id="contest-form-text">
+                        <input type="text" placeholder="날짜를 입력해주세요" id="contest-date">
+                        <input type="text" placeholder="내용을 입력해주세요" id="contest-content">
+                        <input type="text" placeholder="링크를 입력해주세요" id="contest-link">
+                    </div>
+                    <div class="contest-button-box"><input type="button" value="업로드" id="contest-form-button" style="cursor:pointer" onclick="pushInfo()"></div>
+                    <input type="text" id="tb1" />
+                    <button type="button" onclick='createTable3()'>Click Me!</button>
+                    <table id="table" class="order-table table" name="table1" required></table>
+                </form>
+            </div>
+            <div>
+                <div class="sub-title">채용 정보</div>
+            </div>
+        </div>
+    </body>
+    <footer>
+    </footer>
+</html>

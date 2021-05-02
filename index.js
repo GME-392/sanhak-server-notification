@@ -1,3 +1,4 @@
+let USER_ENDPOINT = "https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB";
 let arr = [];
 
 function tableElement(elements, pageNum) {
@@ -156,16 +157,13 @@ function tableDelete(obj, id) {
 //aws endpoint
 //contest info
 //https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB
-function postToDB(infoName, date, link) {
-    axios.post({
-        url: "https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB",
-        headers: {'Content-Type': 'application/json'},
-        body: {
-            "infoName": infoName,
-            "date": date,
-            "link": link,
-        }
+async function postToDB(infoName, date, link) {
+    await axios
+      .post(USER_ENDPOINT, {
+        "infoName": infoName,
+        "date": date,
+        "link": link,
     })
-    .then(response => {alert(response)})
+    .then(response => alert(response))
     .catch(response => alert(response));
 }

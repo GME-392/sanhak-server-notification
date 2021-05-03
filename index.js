@@ -1,7 +1,5 @@
 //const axios = require('axios');
-
-const { default: axios } = require("axios");
-
+//import axios from "./node_modules/axios";
 
 let USER_ENDPOINT = "https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB";
 let arr = [];
@@ -207,4 +205,7 @@ exports.handler = function(event, context, callback) {
         
     }
 };
+
+바디아래.
+<script type="text/javascript">getAllNotice();</script>
 */

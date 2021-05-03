@@ -1,3 +1,8 @@
+//const axios = require('axios');
+
+const { default: axios } = require("axios");
+
+
 let USER_ENDPOINT = "https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB";
 let arr = [];
 
@@ -158,12 +163,48 @@ function tableDelete(obj, id) {
 //contest info
 //https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB
 async function postToDB(infoName, date, link) {
+  try {
     await axios
       .post(USER_ENDPOINT, {
         "infoName": infoName,
         "date": date,
         "link": link,
-    })
-    .then(response => alert(response))
-    .catch(response => alert(response));
+      })
+      .then(response => console.log(response));
+      //.catch(response => alert(response));
+  } catch(err) {
+    console.log(err);
+  }
 }
+
+async function getAllNotice() {
+  try {
+    await axios
+      .get(`${USER_ENDPOINT}?func=getAllNotice`, {})
+      .then(res => {console.log(res)});
+  } catch(err) {
+    console.log(err);
+  }
+}
+
+function setContestTable(res) {
+  
+}
+
+/*
+exports.handler = function(event, context, callback) {
+    var infoName = event.queryStringParameters.infoName;
+    var func = event.queryStringParameters.func;
+
+    switch (func) {
+        case 'getNotice':
+            getNotice(infoName, callback);
+            break;
+        
+        case 'getAllNotice':
+            getAllNotice(callback);
+            break;
+        
+    }
+};
+*/

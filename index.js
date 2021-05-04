@@ -189,9 +189,7 @@ async function getAllNotice() {
 }
 
 function setContestTable(res) {
-  let array = res;
-  arr = array;
-  for(let element in array) {
+  for(let element in res) {
     let date = element["date"];
     let content = element["infoName"];
     let link = element["link"];
@@ -200,7 +198,7 @@ function setContestTable(res) {
       "content": content,
       "link": link,
       "id": date+content+link,
-  };
+    };
     
     let elems = '';
     elems += "<tr><td>" + date
@@ -209,6 +207,7 @@ function setContestTable(res) {
         + "</td><td><button onclick='tableDelete(this,"+ date + content + link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
+    console.log(element);
   }
 }
 

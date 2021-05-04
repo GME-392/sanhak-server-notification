@@ -44,7 +44,7 @@ function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
     for(let i = 0; i < arr.length; ++i){
-        if (arr[i]['id'] == id) {
+        if (arr[i]['id'] == `${id}`) {
           console.log("delete: "+`${arr[i]}`)
           delete arr[i];
         }

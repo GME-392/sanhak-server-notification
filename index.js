@@ -111,24 +111,15 @@ function createTable4() {
 
 }
 
-function getMaxId() {
-    let result = -1;
-    for (let i = 0; i < arr.length; ++i) {
-        if (result < arr[i]["id"]) result = arr[i]["id"];
-    }
-    return result + 1;
-}
-
 function pushInfo() {
     let date = document.getElementById("contest-date").value;
     let content = document.getElementById("contest-content").value;
     let link = document.getElementById("contest-link").value;
-    let id = getMaxId();
     let obj = {
         "date": date,
         "content": content,
         "link": link,
-        "id": id,
+        "id": date+content+link,
     };
     
     let elems = '';

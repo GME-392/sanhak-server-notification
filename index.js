@@ -189,7 +189,7 @@ async function getAllNotice() {
 }
 
 function setContestTable(res) {
-  for(let element in res) {
+  for(let element of res) {
     let date = element["date"];
     let content = element["infoName"];
     let link = element["link"];

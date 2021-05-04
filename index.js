@@ -186,7 +186,7 @@ async function getAllNotice() {
 }
 
 function setContestTable(res) {
-  
+    
 }
 
 /*

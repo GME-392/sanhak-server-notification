@@ -210,4 +210,5 @@ exports.handler = function(event, context, callback) {
 
 바디아래.
 <script type="text/javascript">getAllNotice();</script>
+<script type="module" src="app.js"></script>
 */

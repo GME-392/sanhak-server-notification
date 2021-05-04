@@ -173,21 +173,36 @@ async function postToDB(infoName, date, link) {
   } catch(err) {
     console.log(err);
   }
-  getAllNotice();
 }
 
 async function getAllNotice() {
   try {
     await axios
       .get(`${USER_ENDPOINT}?func=getAllNotice`, {})
-      .then(res => {console.log(res)});
+      .then(res => {
+        console.log(res);
+        setContestTable(res);
+      });
   } catch(err) {
     console.log(err);
   }
 }
 
 function setContestTable(res) {
-    
+  let array = res;
+  arr = array;
+  for(let element in array) {
+    let date = element["date"];
+    let content = element["infoName"];
+    let link = element["link"];
+
+    let elems = '';
+    elems += "<tr><td>" + date
+        + "</td><td>" + content
+        + "</td><td>" + link
+        + "</td><td><button onclick='tableDelete(this,"+ id +")'>X</button></td></tr>";
+    $("#contest-table").append(elems);
+  }
 }
 
 /*

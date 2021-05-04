@@ -45,7 +45,8 @@ function tableDelete(obj, id) {
     tr.remove();
     for(let i = 0; i < arr.length; ++i){
         if (arr[i]['id'] == id) {
-            delete arr[i];
+          console.log("delete: "+`${arr[i]}`)
+          delete arr[i];
         }
     }
 }

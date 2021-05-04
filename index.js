@@ -173,6 +173,7 @@ async function postToDB(infoName, date, link) {
   } catch(err) {
     console.log(err);
   }
+  getAllNotice();
 }
 
 async function getAllNotice() {

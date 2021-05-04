@@ -135,7 +135,7 @@ function pushInfo() {
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ id +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ date+content+link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
 
@@ -151,7 +151,7 @@ function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
     for(let i = 0; i < arr.length; ++i){
-        if (arr[i]['id'] == parseInt(id)) {
+        if (arr[i]['id'] == id) {
             delete arr[i];
         }
     }
@@ -169,7 +169,6 @@ async function postToDB(infoName, date, link) {
         "link": link,
       })
       .then(response => console.log(response));
-      //.catch(response => alert(response));
   } catch(err) {
     console.log(err);
   }
@@ -207,7 +206,7 @@ function setContestTable(res) {
         + "</td><td><button onclick='tableDelete(this,"+ date + content + link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
-    console.log(element);
+    console.log(obj);
   }
 }
 

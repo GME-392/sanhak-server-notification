@@ -1,6 +1,3 @@
-//const axios = require('axios');
-//import axios from "axios";
-
 let USER_ENDPOINT = "https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB";
 let arr = [];
 
@@ -14,101 +11,6 @@ function tableElement(elements, pageNum) {
         tag += "</tr>";
     }
     table.innerHTML += tag;
-}
-
-function createTable() {
-    var a = document.getElementById('tb1').value;
-    if (a == "") {
-      alert("Please enter some numeric value");
-    } else {
-      var th = document.querySelectorAll('#table th');//To check whether `TD` is appended in table or not!
-      if (!th.length) {
-        //If not appended, then append TD in table
-        var rows = "<th>Item Name</th><th>Quantity</th><th>QuantityType</th><th>Amount</th>";
-        var table = document.createElement('table');
-        table.innerHTML = rows;
-        document.getElementById("table").appendChild(table.firstChild);
-      }
-  
-      for (var i = 0; i < a; i++) {
-        var elems = '';
-        elems += "<tr><td><input type='text' name='" + "name".concat(i + 1) + "'></td><td><input type='text' name='" + "quantity".concat(i + 1) + "'></td><td><input type='text' name='" + "qtype".concat(i + 1) + "'></td><td id='amt'><input type='text' id='sum' onkeyup='myfunction(this.value);' name='" + "total".concat(i + 1) + "'></td></tr>";
-        var table = document.createElement('table');
-        table.innerHTML = elems;
-        document.getElementById("table").appendChild(table.firstChild);
-      }
-    }
-}
-
-function createTable2() {
-    var a = document.getElementById('tb1').value;
-    if (a == "") {
-      alert("Please enter some numeric value");
-    } else {
-      let th = document.querySelectorAll('#ta ble th');//To check whether `TD` is appended in table or not!
-      if (!th.length) {
-        //If not appended, then append TD in table
-        let rows = "<th>일자</th><th>내용</th><th>링크</th><th>삭제</th>";
-        let table = document.createElement('table');
-        table.innerHTML = rows;
-        document.getElementById("table").appendChild(table.firstChild);
-      }
-  
-      for (let i = 0; i < arr.length; i++) {
-        let elems = '';
-        elems += "<tr><td><span>" + arr[i]["date"]
-                + "</span></td><td><span>" + arr[i]["content"]
-                + "</span></td><td><span>" + arr[i]["link"]
-                + "</span></td><td id='amt'><input type='text' id='sum' onkeyup='myfunction(this.value);' name='"
-                + "total".concat(i + 1) + "'></td></tr>";
-        let table = document.createElement('table');
-        table.innerHTML = elems;
-        document.getElementById("table").appendChild(table.firstChild);
-      }
-    }
-}
-
-function createTable3() {
-    var a = document.getElementById('tb1').value;
-    if (a == "") {
-      alert("Please enter some numeric value");
-    } else {
-      let th = document.querySelectorAll('#ta ble th');//To check whether `TD` is appended in table or not!
-      if (!th.length) {
-        //If not appended, then append TD in table
-        let rows = "<th>일자</th><th>내용</th><th>링크</th><th>삭제</th>";
-        let table = document.createElement('table');
-        table.innerHTML = rows;
-        document.getElementById("table").appendChild(table.firstChild);
-      }
-  
-      for (let i = 0; i < arr.length; i++) {
-        let elems = '';
-        elems += "<tr><td>" + arr[i]["date"]
-                + "</td><td>" + arr[i]["content"]
-                + "</td><td>" + arr[i]["link"]
-                + "</td><td><button id='tempid"+ i +"'>X</button>";
-        let table = document.createElement('table');
-        table.innerHTML = elems;
-        document.getElementById("contest-table").appendChild(table.firstChild);
-        
-      }
-    }
-}
-
-function createTable4() {
-    for (let i = 0; i < arr.length; i++) {
-        let elems = '';
-        elems += "<tr><td>" + arr[i]["date"]
-                + "</td><td>" + arr[i]["content"]
-                + "</td><td>" + arr[i]["link"]
-                + "</td><td><button onclick='tableDelete(this)'>X</button></td></tr>";
-        let table = document.createElement('table');
-        table.innerHTML = elems;
-        document.getElementById("contest-table").appendChild(table.firstChild);
-        
-      }
-
 }
 
 function pushInfo() {

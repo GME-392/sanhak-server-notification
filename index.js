@@ -1,5 +1,5 @@
 //const axios = require('axios');
-import axios from "axios";
+//import axios from "axios";
 
 let USER_ENDPOINT = "https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB";
 let arr = [];

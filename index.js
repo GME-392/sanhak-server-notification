@@ -53,9 +53,9 @@ function pushInfo() {
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
-    let content = (arr.filter(data => data["id"] == parseInt(id)))["content"];
+    let content = arr.findIndex(x => x["content"] == parseInt(id));
     deleteContestElement(content);
-    arr = arr.filter(data => data["id"] != parseInt(id));
+    arr = arr.findIndex(x => x["content"] != parseInt(id))
 }
 
 //db에서 제거.

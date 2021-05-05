@@ -13,31 +13,22 @@ function tableElement(elements, pageNum) {
     table.innerHTML += tag;
 }
 
-function getMaxId() {
-  let result = -1;
-  for (let i = 0; i < arr.length; ++i) {
-    if (result < arr[i]["id"]) result = arr[i]["id"];
-  }
-  return result + 1;
-}
-
 function pushInfo() {
     let date = document.getElementById("contest-date").value;
     let content = document.getElementById("contest-content").value;
     let link = document.getElementById("contest-link").value;
-    let id = getMaxId();
     let obj = {
         "date": date,
         "content": content,
         "link": link,
-        "id": id,
+        "id": date+content+link,
     };
     
     let elems = '';
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ id +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ date+content+link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
 
@@ -90,45 +81,19 @@ function setContestTable(res) {
     let date = element["date"];
     let content = element["infoName"];
     let link = element["link"];
-    let id = getMaxId();
     let obj = {
       "date": date,
       "content": content,
       "link": link,
-      "id": id,
+      "id": date+content+link,
     };
     
     let elems = '';
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ id +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ date+content+link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
-    //console.log(obj);
   }
 }
-
-/*
-exports.handler = function(event, context, callback) {
-    var infoName = event.queryStringParameters.infoName;
-    var func = event.queryStringParameters.func;
-
-    switch (func) {
-        case 'getNotice':
-            getNotice(infoName, callback);
-            break;
-        
-        case 'getAllNotice':
-            getAllNotice(callback);
-            break;
-        
-    }
-};
-
-
-
-바디아래.
-<script type="text/javascript">getAllNotice();</script>
-<script type="module" src="app.js"></script>
-*/

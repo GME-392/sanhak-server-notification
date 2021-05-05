@@ -21,14 +21,14 @@ function pushInfo() {
         "date": date,
         "content": content,
         "link": link,
-        "id": `${date+content}`,
+        "id": date+content+link,
     };
     
     let elems = '';
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ `${date+content}` +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ date+content+link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
 
@@ -42,10 +42,9 @@ function pushInfo() {
 
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
-    tr.remove();
-    console.log("delete id: "+`${id}`)
+    tr.remove(); 
     for(let i = 0; i < arr.length; ++i){
-        if (arr[i]['id'] == `${id}`) {
+        if (arr[i]['id'] == id.toString()) {
           delete arr[i];
         }
     }
@@ -90,14 +89,14 @@ function setContestTable(res) {
       "date": date,
       "content": content,
       "link": link,
-      "id": `${date+content}`,
+      "id": date+content+link,
     };
     
     let elems = '';
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ `${date+content}` +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ date+content+link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
     console.log(obj);

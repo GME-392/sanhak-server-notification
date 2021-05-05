@@ -53,13 +53,15 @@ function pushInfo() {
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
-    deleteContestElement(arr.filter(data => data["id"] == id)["content"]);
+    let content = arr.filter(data => data["id"] == id)["content"];
+    deleteContestElement(content);
     arr = arr.filter(data => data["id"] != id);
 }
 
 //db에서 제거.
 //차후에는 db에 id필드값을 추가하든 방법을 찾아야 할 듯
 async function deleteContestElement(content) {
+  console.log(content);
   try {
     await axios
       .delete(USER_ENDPOINT, {

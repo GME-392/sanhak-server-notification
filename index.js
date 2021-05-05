@@ -53,7 +53,7 @@ function pushInfo() {
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
-    let content = arr.filter(data => data["id"] == id)["content"];
+    let content = (arr.filter(data => data["id"] == id))["content"];
     deleteContestElement(content);
     arr = arr.filter(data => data["id"] != id);
 }

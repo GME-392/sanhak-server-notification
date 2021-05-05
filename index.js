@@ -52,11 +52,7 @@ function pushInfo() {
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove(); 
-    for(let i = 0; i < arr.length; ++i){
-        if (arr[i]['id'] == parseInt(id)) {
-          delete arr[i];
-        }
-    }
+    arr = arr.filter(data => data["id"] != id);
 }
 
 //aws endpoint

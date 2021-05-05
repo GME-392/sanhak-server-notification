@@ -49,10 +49,26 @@ function pushInfo() {
     postToDB(content, date, link);
 }
 
+//테이블에서 제거
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
-    tr.remove(); 
+    tr.remove();
+    deleteContestElement(arr.filter(data => data["id"] == id)["content"]);
     arr = arr.filter(data => data["id"] != id);
+}
+
+//db에서 제거.
+//차후에는 db에 id필드값을 추가하든 방법을 찾아야 할 듯
+function deleteContestElement(name) {
+  try {
+    await axios
+      .delete(USER_ENDPOINT, {
+        "name": name,
+      })
+      .then(response => console.log(response));
+  } catch(err) {
+    console.log(err);
+  }
 }
 
 //aws endpoint

@@ -55,7 +55,7 @@ function tableDelete(obj, id) {
     tr.remove();
     let contentIndex = arr.findIndex(x => x["id"] === parseInt(id));
     deleteContestElement(arr[contentIndex]["content"]);
-    arr = splice(arr.findIndex(x => x["id"] !== parseInt(id)),1);
+    arr = arr.splice(contentIndex, 1);
 }
 
 //db에서 제거.

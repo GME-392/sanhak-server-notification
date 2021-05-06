@@ -25,19 +25,18 @@ function pushInfo() {
     let date = document.getElementById("contest-date").value;
     let content = document.getElementById("contest-content").value;
     let link = document.getElementById("contest-link").value;
-    let id = getMaxId();
     let obj = {
         "date": date,
         "content": content,
         "link": link,
-        "id": id,
+        "id": date+content+link,
     };
     
     let elems = '';
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ id +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ date+content+link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
 
@@ -53,7 +52,7 @@ function pushInfo() {
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
-    let contentIndex = arr.findIndex(x => x["id"] === parseInt(id));
+    let contentIndex = arr.findIndex(x => x["id"] === id);
     deleteContestElement(arr[contentIndex]["content"]);
     arr = arr.splice(contentIndex, 1);
 }
@@ -109,19 +108,18 @@ function setContestTable(res) {
     let date = element["date"];
     let content = element["infoName"];
     let link = element["link"];
-    let id = getMaxId();
     let obj = {
       "date": date,
       "content": content,
       "link": link,
-      "id": id,
+      "id": date+content+link,
     };
     
     let elems = '';
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ id +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ date+content+link +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
   }

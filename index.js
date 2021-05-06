@@ -17,9 +17,7 @@ function getMaxId() {
   let result = -1;
   for (let i = 0; i < arr.length; ++i) {
     if (result < arr[i]["id"]) result = arr[i]["id"];
-    console.log(arr[i]["date"]+arr[i]["content"]+arr[i]["link"]+arr[i]["id"]);
   }
-  console.log("nextline");
   return result + 1;
 }
 
@@ -57,7 +55,7 @@ function tableDelete(obj, id) {
     tr.remove();
     let contentIndex = arr.findIndex(x => x["id"] === parseInt(id));
     deleteContestElement(arr[contentIndex]["content"]);
-    arr = arr.splice(contentIndex, 1);
+    arr.splice(contentIndex, 1);
 }
 
 //db에서 제거.

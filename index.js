@@ -17,6 +17,7 @@ function getMaxId() {
   let result = -1;
   for (let i = 0; i < arr.length; ++i) {
     if (result < arr[i]["id"]) result = arr[i]["id"];
+    console.log(arr[i]["date"]+arr[i]["content"]+arr[i]["link"]+arr[i]["id"]);
   }
   return result + 1;
 }

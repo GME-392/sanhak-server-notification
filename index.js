@@ -65,7 +65,9 @@ async function deleteContestElement(content) {
   try {
     await axios
       .delete(USER_ENDPOINT, {
-        "infoName": content,
+        data: {
+          "infoName": content,
+        }
       })
       .then(response => console.log(response));
   } catch(err) {

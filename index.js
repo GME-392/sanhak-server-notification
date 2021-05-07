@@ -174,6 +174,9 @@ function deleteContestTableElement(obj, user_endpoint, id) {
   tr.remove();
   let contentIndex = contestInfo.findIndex(x => x["id"] == id);
   deleteElement(user_endpoint, id);
+  deleteElement(user_endpoint, "a");
+  deleteElement(user_endpoint, "test");
+  deleteElement(user_endpoint, "b");
   contestInfo.splice(contentIndex, 1);
 }
 

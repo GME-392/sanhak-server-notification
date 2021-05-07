@@ -43,14 +43,14 @@ function tableDelete(obj, id) {
 
 //db에서 제거.
 //차후에는 db에 id필드값을 추가하든 방법을 찾아야 할 듯
-async function deleteContestElement(iD) {
-  console.log(iD);
+async function deleteContestElement(id) {
+  console.log(id);
   try {
     await axios
       .delete(USER_ENDPOINT, {
         data: {
-          id: iD,
-        }
+          "id": `${id}`,
+        },
       })
       .then(response => console.log(response));
   } catch(err) {

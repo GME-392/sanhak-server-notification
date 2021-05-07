@@ -100,7 +100,7 @@ function setContestTable(res) {
       "link": link,
       "id": id,
     };
-    
+    console.log(`${date}, ${content}, ${link}, ${id}`);
     let elems = '';
     elems += "<tr><td>" + date
         + "</td><td>" + content

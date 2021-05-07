@@ -1,24 +1,24 @@
 let USER_ENDPOINT = "https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB";
 let arr = [];
-
-function tableElement(elements, pageNum) {
-    let table = document.getElementById('contest-table-body');
-    for (let i = 0; i < elements.length; ++i) { 
-        let tag = "<tr>";
-        for (let k in elements[i]) {
-            tag += "<td>"+k+"</td>";
-        }
-        tag += "</tr>";
-    }
-    table.innerHTML += tag;
-}
+let jobInfo = [];
+let g_id = -1;
+let MAXID = 10000;
 
 function getMaxId() {
-  let result = -1;
-  for (let i = 0; i < arr.length; ++i) {
-    if (result < arr[i]["id"]) result = arr[i]["id"];
+  if (g_id == -1) {
+    for(let i of arr) {
+      if (g_id < i["id"]) {
+        g_id = i["id"];
+      }
+    }
+    for(let i of jobInfo) {
+      if (g_id < i["id"]) {
+        g_id = i["id"];
+      }
+    }
   }
-  return result + 1;
+  g_id = (g_id + 1)%MAXID;
+  return g_id;
 }
 
 function pushInfo() {
@@ -46,7 +46,7 @@ function pushInfo() {
     $("#contest-link").val("");
 
     //db로 전송하는 함수
-    postToDB(content, date, link);
+    postToDB(content, date, link, id);
 }
 
 //테이블에서 제거
@@ -54,19 +54,19 @@ function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
     let contentIndex = arr.findIndex(x => x["id"] === parseInt(id));
-    deleteContestElement(arr[contentIndex]["content"]);
+    deleteContestElement(id);
     arr.splice(contentIndex, 1);
 }
 
 //db에서 제거.
 //차후에는 db에 id필드값을 추가하든 방법을 찾아야 할 듯
-async function deleteContestElement(content) {
-  console.log(content);
+async function deleteContestElement(id) {
+  console.log(id);
   try {
     await axios
       .delete(USER_ENDPOINT, {
         data: {
-          "infoName": content,
+          "id": id,
         }
       })
       .then(response => console.log(response));
@@ -78,13 +78,14 @@ async function deleteContestElement(content) {
 //aws endpoint
 //contest info
 //https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB
-async function postToDB(infoName, date, link) {
+async function postToDB(infoName, date, link, id) {
   try {
     await axios
       .post(USER_ENDPOINT, {
         "infoName": infoName,
         "date": date,
         "link": link,
+        "id": id,
       })
       .then(response => console.log(response));
   } catch(err) {
@@ -109,7 +110,7 @@ function setContestTable(res) {
     let date = element["date"];
     let content = element["infoName"];
     let link = element["link"];
-    let id = getMaxId();
+    let id = element["id"];
     let obj = {
       "date": date,
       "content": content,

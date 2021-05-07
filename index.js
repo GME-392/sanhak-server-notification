@@ -1,5 +1,5 @@
 let USER_ENDPOINT_CODE = "https://tdwcyrlp8g.execute-api.ap-northeast-2.amazonaws.com/noticeDB";
-let USER_ENDPOINT_JOB;
+let USER_ENDPOINT_JOB = "";
 let contestInfo = [];
 let jobInfo = [];
 
@@ -55,7 +55,7 @@ function setContestTable(res) {
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='deleteTableElement(this,"+ `${USER_ENDPOINT_CODE}, ${id}` +", contestInfo)'>X</button></td></tr>";
+        + "</td><td><button onclick='deleteContestTableElement(this,"+ `${USER_ENDPOINT_CODE}, ${id}` +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     contestInfo.push(obj);
   }
@@ -77,7 +77,7 @@ function addContestTableElement() {
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='deleteTableElement(this,"+ `${USER_ENDPOINT_CODE}, ${id}` +", contestInfo)'>X</button></td></tr>";
+        + "</td><td><button onclick='deleteContestTableElement(this,"+ `${USER_ENDPOINT_CODE}, ${id}` +", contestInfo)'>X</button></td></tr>";
     $("#contest-table").append(elems);
     contestInfo.push(obj);
 
@@ -166,6 +166,15 @@ function deleteTableElement(obj, user_endpoint, id, arr) {
     let contentIndex = arr.findIndex(x => x["id"] === id);
     deleteElement(user_endpoint, arr[contentIndex]["id"]);
     arr.splice(contentIndex, 1);
+}
+
+//contest테이블에서 제거
+function deleteContestTableElement(obj, user_endpoint, id) {
+  let tr = $(obj).parent().parent();
+  tr.remove();
+  let contentIndex = contestInfo.findIndex(x => x["id"] == id);
+  deleteElement(user_endpoint, id);
+  contestInfo.splice(contentIndex, 1);
 }
 
 //db에서 제거.

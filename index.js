@@ -8,7 +8,7 @@ function pushInfo() {
     let date = document.getElementById("contest-date").value;
     let content = document.getElementById("contest-content").value;
     let link = document.getElementById("contest-link").value;
-    let id = content+date
+    let id = content;
     let obj = {
         "date": date,
         "content": content,

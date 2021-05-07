@@ -19,6 +19,7 @@ async function getAllNotice() {
     await axios
       .get(`${USER_ENDPOINT_CODE}?func=getAllNotice`, {})
       .then(res => {
+        console.log(res.data);
         setContestTable(res.data);
       });
   } catch(err) {
@@ -30,7 +31,7 @@ async function getAllNotice() {
     await axios
       .get(`${USER_ENDPOINT_CODE}?func=getAllNotice`, {})
       .then(res => {
-        setJobTable(res.data, "#job-table");
+        setJobTable(res.data);
       });
   } catch(err) {
     console.log(err);
@@ -42,7 +43,7 @@ function setContestTable(res) {
     let date = element["date"];
     let content = element["infoName"];
     let link = element["link"];
-    let id = getMaxId(contestInfo);
+    let id = element["id"];
     let obj = {
       "date": date,
       "content": content,
@@ -85,7 +86,7 @@ function addContestTableElement() {
     $("#contest-link").val("");
 
     //code db로 전송
-    postElement(USER_ENDPOINT_CODE, content, date, link);
+    postElement(USER_ENDPOINT_CODE, id, content, date, link);
 }
 
 //endpoint차후에 수정
@@ -94,7 +95,7 @@ function setJobTable(res) {
     let date = element["date"];
     let content = element["infoName"];
     let link = element["link"];
-    let id = getMaxId(jobInfo);
+    let id = element["id"];
     let obj = {
       "date": date,
       "content": content,

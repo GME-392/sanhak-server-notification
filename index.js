@@ -65,7 +65,7 @@ function addContestTableElement() {
     let date = document.getElementById("contest-date").value;
     let content = document.getElementById("contest-content").value;
     let link = document.getElementById("contest-link").value;
-    let id = getMaxId(contestInfo);
+    let id = date+content;
     let obj = {
         "date": date,
         "content": content,
@@ -118,7 +118,7 @@ function addJobTableElement() {
   let date = document.getElementById("job-date").value;
   let content = document.getElementById("job-content").value;
   let link = document.getElementById("job-link").value;
-  let id = getMaxId(jobInfo);
+  let id = date+content;
   let obj = {
       "date": date,
       "content": content,

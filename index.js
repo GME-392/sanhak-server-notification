@@ -36,7 +36,7 @@ function pushInfo() {
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
-    let contentIndex = arr.findIndex(x => x["id"] === id);
+    let contentIndex = arr.findIndex(x => x["id"] == id);
     deleteContestElement(id);
     arr.splice(contentIndex, 1);
 }

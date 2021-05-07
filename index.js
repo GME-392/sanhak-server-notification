@@ -20,7 +20,7 @@ function pushInfo() {
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ `${id}` +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ `"${id}"` +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
 
@@ -105,7 +105,7 @@ function setContestTable(res) {
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ `${id}` +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ `"${id}"` +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
   }

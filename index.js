@@ -4,28 +4,11 @@ let jobInfo = [];
 let g_id = -1;
 let MAXID = 10000;
 
-function getMaxId() {
-  if (g_id == -1) {
-    for(let i of arr) {
-      if (g_id < i["id"]) {
-        g_id = i["id"];
-      }
-    }
-    for(let i of jobInfo) {
-      if (g_id < i["id"]) {
-        g_id = i["id"];
-      }
-    }
-  }
-  g_id = (g_id + 1)%MAXID;
-  return g_id;
-}
-
 function pushInfo() {
     let date = document.getElementById("contest-date").value;
     let content = document.getElementById("contest-content").value;
     let link = document.getElementById("contest-link").value;
-    let id = getMaxId();
+    let id = date+content
     let obj = {
         "date": date,
         "content": content,
@@ -37,7 +20,7 @@ function pushInfo() {
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ id +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ `${id}` +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
 
@@ -53,7 +36,7 @@ function pushInfo() {
 function tableDelete(obj, id) {
     let tr = $(obj).parent().parent();
     tr.remove();
-    let contentIndex = arr.findIndex(x => x["id"] === parseInt(id));
+    let contentIndex = arr.findIndex(x => x["id"] === id);
     deleteContestElement(id);
     arr.splice(contentIndex, 1);
 }
@@ -122,7 +105,7 @@ function setContestTable(res) {
     elems += "<tr><td>" + date
         + "</td><td>" + content
         + "</td><td>" + link
-        + "</td><td><button onclick='tableDelete(this,"+ id +")'>X</button></td></tr>";
+        + "</td><td><button onclick='tableDelete(this,"+ `${id}` +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     arr.push(obj);
   }

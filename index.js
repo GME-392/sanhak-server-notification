@@ -162,7 +162,8 @@ async function postElement(user_endpoint, id, infoName, date, link) {
 function deleteTableElement(obj, user_endpoint, id, arr) {
     let tr = $(obj).parent().parent();
     tr.remove();
-    let contentIndex = arr.findIndex(x => x["id"] === parseInt(id));
+    //let contentIndex = arr.findIndex(x => x["id"] === parseInt(id));
+    let contentIndex = arr.findIndex(x => x["id"] === id);
     deleteElement(user_endpoint, arr[contentIndex]["id"]);
     arr.splice(contentIndex, 1);
 }

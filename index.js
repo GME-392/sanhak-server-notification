@@ -5,6 +5,12 @@ let jobInfo = [];
 
 //db에서 모든 값 가져오기
 async function getAllNotice() {
+  getContest();
+  getJob();
+}
+
+//get from contest db
+async function getContest() {
   try {
     await axios
       .get(`${USER_ENDPOINT_CODE}?func=getAllNotice`, {})
@@ -14,7 +20,10 @@ async function getAllNotice() {
   } catch(err) {
     console.log(err);
   }
+}
 
+//get from job db
+async function getJob() {
   try {
     await axios
       .get(`${USER_ENDPOINT_JOB}?func=getAllNotice`, {})

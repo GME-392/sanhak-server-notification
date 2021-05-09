@@ -26,7 +26,7 @@ async function getContest() {
 async function getJob() {
   try {
     await axios
-      .get(`${USER_ENDPOINT_JOB}?func=getAllNotice`, {})
+      .get(`${USER_ENDPOINT_JOB}?func=getAllInfo`, {})
       .then(res => {
         setJobTable(res.data);
       });

@@ -48,7 +48,6 @@ function setContestTable(res) {
       "link": link,
       "id": id,
     };
-    console.log(`${date}, ${content}, ${link}, ${id}`);
     let elems = '';
     elems += "<tr><td colspan='2'>" + date
       + "</td><td colspan='3'>" + content
@@ -160,7 +159,6 @@ function deleteJobTableElement(obj, id) {
 
 //Contest 정보 db에서 제거
 async function deleteContestElement(id) {
-  console.log(id);
   try {
     await axios
       .delete(USER_ENDPOINT_CODE, {
@@ -176,7 +174,6 @@ async function deleteContestElement(id) {
 
 //job 정보 db에서 제거
 async function deleteJobElement(id) {
-  console.log(id);
   try {
     await axios
       .delete(USER_ENDPOINT_JOB, {

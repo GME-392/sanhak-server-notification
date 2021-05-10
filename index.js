@@ -50,10 +50,10 @@ function setContestTable(res) {
     };
     console.log(`${date}, ${content}, ${link}, ${id}`);
     let elems = '';
-    elems += "<tr><td>" + date
-        + "</td><td>" + content
-        + "</td><td>" + link
-        + "</td><td><button onclick='deleteContestTableElement(this,"+ `"${id}"` +")'>X</button></td></tr>";
+    elems += "<tr><td colspan='2'>" + date
+      + "</td><td colspan='3'>" + content
+      + "</td><td colspan='5'>" + link
+      + "</td><td colspan='1'><button onclick='deleteContestTableElement(this,"+ `"${id}"` +")'>X</button></td></tr>";
     $("#contest-table").append(elems);
     contestInfo.push(obj);
   }
@@ -73,10 +73,10 @@ function setJobTable(res) {
       "id": id,
     };
     let elems = '';
-    elems += "<tr><td>" + date
-        + "</td><td>" + content
-        + "</td><td>" + link
-        + "</td><td><button onclick='deleteJobTableElement(this,"+ `"${id}"` +")'>X</button></td></tr>";
+    elems += "<tr><td colspan='2'>" + date
+    + "</td><td colspan='3'>" + content
+    + "</td><td colspan='5'>" + link
+    + "</td><td colspan='1'><button onclick='deleteJobTableElement(this,"+ `"${id}"` +")'>X</button></td></tr>";
     $("#job-table").append(elems);
     jobInfo.push(obj);
   }
@@ -96,10 +96,10 @@ function addContestElement() {
   };
   
   let elems = '';
-  elems += "<tr><td>" + date
-      + "</td><td>" + content
-      + "</td><td>" + link
-      + "</td><td><button onclick='deleteContestTableElement(this,"+ `"${id}"` +")'>X</button></td></tr>";
+  elems += "<tr><td colspan='2'>" + date
+      + "</td><td colspan='3'>" + content
+      + "</td><td colspan='5'>" + link
+      + "</td><td colspan='1'><button onclick='deleteContestTableElement(this,"+ `"${id}"` +")'>X</button></td></tr>";
   $("#contest-table").append(elems);
   contestInfo.push(obj);
 
@@ -125,10 +125,10 @@ function addJobElement() {
   };
   
   let elems = '';
-  elems += "<tr><td>" + date
-      + "</td><td>" + content
-      + "</td><td>" + link
-      + "</td><td><button onclick='deleteJobTableElement(this,"+ `"${id}"` +")'>X</button></td></tr>";
+  elems += "<tr><td colspan='2'>" + date
+      + "</td><td colspan='3'>" + content
+      + "</td><td colspan='5'>" + link
+      + "</td><td colspan='1'><button onclick='deleteJobTableElement(this,"+ `"${id}"` +")'>X</button></td></tr>";
   $("#job-table").append(elems);
   jobInfo.push(obj);
 

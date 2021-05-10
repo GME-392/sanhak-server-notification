@@ -21,10 +21,12 @@
 
 #contest-table, #job-table{
     width: 100%;
+    max-width: 1000px;
     margin: 20px 0px;
     border-collapse: collapse;
     border-style: bold;
     border-width: 1px;
+    table-layout: fixed;
 }
 
 .content-table-head, .job-table-head{
@@ -33,6 +35,7 @@
 
 #contest-table-body, .job-table-body{
     width: 100%;
+    max-width: 1000px;
 }
 
 #contest-table th, #job-table th{
@@ -51,7 +54,8 @@
     text-align: center;
     border: 1px solid #e4e4e4;
     padding: 7px;
-    table-layout: fixed;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 #contest-form, #job-form{

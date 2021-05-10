@@ -1,3 +1,7 @@
+.wrapper{
+    width: 1000px;
+}
+
 .sub-title{
     font-size: 25px;
     font-weight: bold;
@@ -6,7 +10,9 @@
 }
 
 .contest-box, .job-box{
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 50px 0px;
 }
 
 .contest, .job{
@@ -15,7 +21,7 @@
 
 #contest-table, #job-table{
     width: 100%;
-    margin: 20px;
+    margin: 20px 0px;
     border-collapse: collapse;
     border-style: bold;
     border-width: 1px;

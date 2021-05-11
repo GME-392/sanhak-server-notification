@@ -93,6 +93,9 @@ function addContestElement() {
       "link": link,
       "id": id,
   };
+  if(isVaildStr(date, content, link)) {
+    return;
+  }
   
   let elems = '';
   elems += "<tr><td colspan='2'>" + date
@@ -122,6 +125,9 @@ function addJobElement() {
       "link": link,
       "id": id,
   };
+  if(isVaildStr(date, content, link)) {
+    return;
+  }
   
   let elems = '';
   elems += "<tr><td colspan='2'>" + date
@@ -201,4 +207,12 @@ async function postToDB(user_endpoint, infoName, date, link, id) {
   } catch(err) {
     console.log(err);
   }
+}
+
+function isVaildStr(date, content, link) {
+  if (date.trim() == "" || content.trim() == "" || link.trim() == "") {
+    alert("빈 입력이 있습니다. 다시 입력해주세요.");
+    return false;
+  }
+  return true;
 }

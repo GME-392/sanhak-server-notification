@@ -93,7 +93,7 @@ function addContestElement() {
       "link": link,
       "id": id,
   };
-  if(isVaildStr(date, content, link)) {
+  if(!isVaildStr(date, content, link)) {
     return;
   }
   
@@ -125,7 +125,7 @@ function addJobElement() {
       "link": link,
       "id": id,
   };
-  if(isVaildStr(date, content, link)) {
+  if(!isVaildStr(date, content, link)) {
     return;
   }
   

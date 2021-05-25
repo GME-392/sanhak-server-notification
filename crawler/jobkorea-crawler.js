@@ -3,51 +3,58 @@ var cheerio = require('cheerio');
 
 //event, context, callback
 exports.handler = async () => {
+    // 사용 변수들
+    //let User_ID = event.name;
+    let url = "https://www.jobkorea.co.kr/recruit/joblist?menucode=duty&dutyCtgr=10016";
+    let solve_num = []; // 지금까지 푼 문제들을 저장해 놓은 배열  
     
-  // 사용 변수들
-  //let User_ID = event.name;
-  let url = "https://www.jobkorea.co.kr/recruit/joblist?menucode=duty&dutyCtgr=10016";
-  let solve_num = []; // 지금까지 푼 문제들을 저장해 놓은 배열  
-  
-  let today = new Date();   
+    let today = new Date();   
 
-  let year = today.getFullYear(); // 년도
-  let month = today.getMonth() + 1;  // 월
-  let date = today.getDate();  // 날짜
-  let day = today.getDay();  // 요일
+    let year = today.getFullYear(); // 년도
+    let year_str = year + "-";
+    let month = today.getMonth() + 1;  // 월
+    let date = today.getDate();  // 날짜
+    let day = today.getDay();  // 요일
 
-  await axios.get(url).then(all_data => {
-      // 성공적으로 data(html)를 받아왔다면
-      console.log("Success!!");
+    await axios.get(url).then(all_data => {
+        // 성공적으로 data(html)를 받아왔다면
+        console.log("Success!!");
+        //console.log(all_data);
 
-      //console.log(all_data.data);
-       // cheerio 모듈을 사용하여 data를 저장하고
-      let $ = cheerio.load(all_data.data);
-      // 해당 string은 내가 원하는 정보인 "지금까지 solve한 문제들"이 저장되어 있는 경로임!
-      //:nth-child(6)>div.tplList>table>tbody>tr>td>a
-      $('body>div#wrap>div#container>div#content>div.rcr_cnt>div#dev-gi-list>div.tplJobListWrap>div.tplList>table>tbody>tr').each((index,item) => {
-          solve_num.push($(item).find("td a").text()); // 지금까지 푼 문제 번호들 저장
-          //console.log(item);
-      });
+        //console.log(all_data.data);
+        // cheerio 모듈을 사용하여 data를 저장하고
+        let $ = cheerio.load(all_data.data);
+        // 해당 string은 내가 원하는 정보인 "지금까지 solve한 문제들"이 저장되어 있는 경로임!
 
-      const pre_url = "https://www.jobkorea.co.kr";
-      const $bodyList = $('body>div#wrap>div#container>div#content>div.rcr_cnt>div#dev-gi-list>div.tplJobListWrap>div.tplList>table>tbody>tr');
-      $bodyList.each((index, item) => {
-        console.log($(item).find("td.tplCo>a").text());
-        console.log($(item).find("td.tplTit>div.titBx>strong>a").text());
-        console.log(pre_url+$(item).find("td.tplTit>div.titBx>strong>a")[0].attribs.href);
-        console.log($(item).find("td.odd>span.date>span.tahoma").text().substr(1).split("/"));
-        console.log(year+"-"+$(item).find("td.odd>span.date>span.tahoma").text().substr(1).replace("/","-"));
-        //console.log($(item).find("td.odd>span.date").text()); 뒤 요일까지 붙어서 나옴.
-      })
-  })
-  .catch(err => {console.log(err);});
-  console.log(solve_num);
-  return {
-      statusCode : 200,
-      body : solve_num
-  } 
+        const pre_url = "https://www.jobkorea.co.kr";
+        const $bodyList = $('body>div#wrap>div#container>div#content>div.rcr_cnt>div#dev-gi-list>div.tplJobListWrap>div.tplList>table>tbody>tr');
+        $bodyList.each((index, item) => {
+            //console.log($(item).find("td.tplCo>a").text()); 회사명
+            //console.log($(item).find("td.tplTit>div.titBx>strong>a").text()); 공고 제목
+            //console.log(pre_url+$(item).find("td.tplTit>div.titBx>strong>a")[0].attribs.href); 공고 링크
+            //console.log($(item).find("td.odd>span.date>span.tahoma").text().substr(1).split("/")); 공고 날짜
+            //console.log(year+"-"+$(item).find("td.odd>span.date>span.tahoma").text().substr(1).replace("/","-"));
+            //console.log($(item).find("td.odd>span.date").text()); 뒤 요일까지 붙어서 나옴.
 
+            let d = year+"-"+$(item).find("td.odd>span.date>span.tahoma").text().substr(1).replace("/","-");
+            d = d == year_str ? "상시채용" : d;
+            let c = $(item).find("td.tplCo>a").text()+ " " +$(item).find("td.tplTit>div.titBx>strong>a").text();
+
+            let obj = {
+                date: d,
+                content: c,
+                link: pre_url+$(item).find("td.tplTit>div.titBx>strong>a")[0].attribs.href,
+                id: d+c,
+            }
+            solve_num.push(obj);
+        })
+    })
+    .catch(err => {console.log(err);});
+    console.log(solve_num);
+    return {
+        statusCode : 200,
+        body : solve_num
+    }
 };
 exports.handler();
 

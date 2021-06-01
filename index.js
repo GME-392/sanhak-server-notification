@@ -15,9 +15,7 @@ async function getContest() {
     await axios
       .get(`${USER_ENDPOINT_CODE}?func=getAllNotice`, {})
       .then(res => {
-        setContestTable(res.data.sort((a, b) => {
-          return a["date"] < b["date"];
-        }));
+        setContestTable(res.data);
       });
   } catch(err) {
     console.log(err);
@@ -39,6 +37,9 @@ async function getJob() {
 
 //contest 테이블 설정
 function setContestTable(res) {
+  res = res.sort((a, b) => {
+    return a["date"] < b["date"];
+  })
   for(let element of res) {
     let date = element["date"];
     let content = element["infoName"];

@@ -15,10 +15,9 @@ async function getContest() {
     await axios
       .get(`${USER_ENDPOINT_CODE}?func=getAllNotice`, {})
       .then(res => {
-        res.data.sort((a, b) => {
+        setContestTable(res.data.sort((a, b) => {
           return a["date"] < b["date"];
-        })
-        setContestTable(res.data);
+        }));
       });
   } catch(err) {
     console.log(err);
